@@ -18,4 +18,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  'react-refresh/only-export-components' : 'warn',
+  'react/prop-types' : 0
 }
