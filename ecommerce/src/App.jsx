@@ -1,31 +1,22 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
-import CartWidget from './components/CartWidget/CartWidget'
 import Navbar from './components/Navbar/Navbar'
-import Button from './components/Button/Button'
-import ItemCount from './components/ItemCount/ItemCount'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 
 function App() {
-  console.log ('render app')
   return ( 
-    <header>
-      <ItemListContainer greeting='Bienvenidos'/>
-
-      <h1>Mora Equipamientos</h1>
-
+    <>
+    <BrowserRouter>
       <Navbar/>
-      
-      <Button text='Home' textColor='red' className='btn btn-primary'/>
-      <Button text='Contactos' textColor='red' className='btn btn-danger'/>
-      <Button text='¿Quienes somos?' textColor='red' className='btn btn-primary'/>
-
-      <CartWidget/>
-
-      <ItemCount/>
-    </header>
+      <Routes>
+      <Route path='/' element = {<ItemListContainer greeting='Bienvenidos'/>}/>
+      <Route path='/category/:categoryId' element = {<ItemListContainer greeting='Productos de la categoria: '/>}/>
+      <Route path='/item/:itemId' element = {<ItemDetailContainer/>}/>
+      </Routes>
+    </BrowserRouter>
+    </>
   )
 }
 
