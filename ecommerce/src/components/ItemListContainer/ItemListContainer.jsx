@@ -1,41 +1,55 @@
-import { useEffect, useState } from "react";
-import { getProducts, getProductsbyCategory } from "../../asyncmock";
-import ItemList from "../ItemList/ItemList";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, memo } from "react"
+import ItemList from "../ItemList/ItemList"
+import { useParams } from "react-router-dom"
+import { useNotification } from "../../notification/hooks/useNotification"
+import { getDocs, collection, query, where, orderBy} from 'firebase/firestore'
+import { db } from "../../services/firebase/firebaseConfig"
 
-const ItemListContainer = (props) => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const { categoryId } = useParams();
+const ItemListMemoized = memo(ItemList)
+
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState()
+    const [render, setRender] = useState(false)
+
+    const { categoryId } = useParams()
+
+    const { showNotification } = useNotification()
 
     useEffect(() => {
-        setLoading(true);
+        setTimeout(() => {
+            setRender(prev => !prev)
+        }, 2000)
+    }, [])
 
-        const asyncFunction = categoryId ? getProductsbyCategory : getProducts;
+    useEffect(() => {
 
-        asyncFunction(categoryId)
-            .then(result => {
-                setProducts(result);
+        const productsCollection = categoryId ? (
+            query(collection(db, 'products'), where('category', '==', categoryId))
+        ) : (
+            query(collection(db, 'products'), orderBy('name', 'desc'))
+        )
+
+        getDocs(productsCollection)
+            .then(querySnapshot => {
+                const productsAdapted = querySnapshot.docs.map(doc => {
+                    const data = doc.data()
+
+                    return { id: doc.id, ...data}
+                })
+
+                setProducts(productsAdapted)
             })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-
-    }, [categoryId]);
-
-    if (loading) {
-        return <h1>Cargando listado de productos...</h1>;
-    }
+            .catch(() => {
+                showNotification('error', 'Hubo un error cargado los productos')
+            })        
+    }, [categoryId])
 
     return (
-        <div>
-            <h1>{props.greeting}</h1>
-            <ItemList products={products} />
+        <div style={{ background: 'orange'}} onClick={() => console.log('hice click en itemlistcontainer')}>
+            <h1>{ greeting }</h1>
+            <ItemListMemoized products={products}/>
         </div>
-    );
-};
+    )
+}
 
-export default ItemListContainer;
+export default ItemListContainer

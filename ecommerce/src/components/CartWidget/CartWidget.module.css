@@ -1,0 +1,21 @@
+.cartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 2px solid #ccc; /* Agrega un borde de 2 píxeles sólido con color gris */
+    padding: 5px 10px; /* Agrega un relleno de 5 píxeles arriba y abajo, y 10 píxeles a los lados */
+    border-radius: 20px; /* Redondea las esquinas del contenedor */
+    background-color: #f8f9fa; /* Agrega un color de fondo para el contenedor */
+}
+
+.cartIcon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px; /* Añade un pequeño margen a la derecha del icono */
+}
+
+.quantity {
+    font-weight: bold; /* Hace que el número sea más grueso */
+    color: #333; /* Cambia el color del número */
+}
