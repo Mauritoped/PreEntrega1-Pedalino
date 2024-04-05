@@ -1,0 +1,4 @@
+¡Bienvenido al Workshop de Venta de Cocinas Industriales, Campanas y Anafes!
+
+Este workshop está diseñado para proporcionarte todo el conocimiento y las habilidades necesarias para destacarte en el emocionante mundo de la venta de equipamiento de cocina industrial. Durante este evento educativo y práctico, explorarás las características, funciones y beneficios de las cocinas industriales, campanas y anafes, así como también aprenderás las mejores estrategias de venta y técnicas de comunicación para convertirte en un experto en el campo.
+Este workshop está dirigido a profesionales de ventas y emprendedores que deseen incursionar o mejorar en la venta de equipamiento de cocina industrial. También es ideal para dueños de restaurantes, chefs y profesionales de la industria alimentaria que buscan ampliar su conocimiento sobre equipamiento de cocina.
